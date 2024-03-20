@@ -76,11 +76,11 @@ const Sidebar = () => {
 
 
     return (
-    <div className="bg-custom-blue h-full overflow-y-auto px-5 flex flex-col">
+    <div className="bg-fuchsia-800 bg-opacity-80 h-full overflow-y-auto px-5 flex flex-col">
       <div className="flex-grow">
         <div 
             onClick={addNewRoom}
-            className="cursor-pointer flex justify-evenly items-center border mt-2 rounded-md hover:bg-blue-800 duration-150">
+            className="cursor-pointer flex justify-evenly items-center border mt-2 rounded-md hover:bg-fuchsia-900 duration-150">
             <span className="text-white p-4 text-2xl">＋</span>
             <h1 className="text-white text-xl font-semibold p-4">New Chat</h1>
         </div>
@@ -88,7 +88,7 @@ const Sidebar = () => {
         {rooms.map((room) => (
             <li
               key={room.id}
-              className="cursor-pointer border-b p-4 text-slate-100 hover:bg-slate-700 duration-150 "
+              className="cursor-pointer border-b p-4 text-slate-100 hover:bg-fuchsia-900 duration-150 "
               onClick={() => selectRoom(room.id, room.name)}
             >
               {room.name}
@@ -105,7 +105,7 @@ const Sidebar = () => {
 
 
       <div onClick={handleLogout} 
-        className="text-lg flex items-center justify-evenly mb-2 cursor-pointer p-4 text-slate-100 hover:bg-slate-700 duration-150">
+        className="text-lg flex items-center justify-evenly mb-2 cursor-pointer p-4 text-slate-100 hover:bg-fuchsia-900 duration-150">
         <BiLogOut />
         <span>
           ログアウト

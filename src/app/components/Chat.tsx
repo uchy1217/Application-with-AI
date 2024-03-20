@@ -107,8 +107,8 @@ const Chat = () => {
   };
 
   return (
-    <div className="bg-gray-500 h-full p-4 flex flex-col">
-      <h1 className="text-2xl text-white font-semibold mb-4">
+    <div className="bg-blue-200 bg-opacity-10 h-full p-4 flex flex-col">
+      <h1 className="text-2xl text-gray-600 font-semibold mb-4">
         {selectRoomName}
       </h1>
       <div className="flex-grow overflow-y-auto mb-4" ref={scrollDiv}>
@@ -120,8 +120,8 @@ const Chat = () => {
             <div
               className={
                 message.sender === "user"
-                  ? "bg-blue-500 inline-block rounded px-4 py-2 mb-2"
-                  : "bg-green-500 inline-block rounded px-4 py-2 mb-2"
+                  ? "bg-indigo-500 bg-opacity-70 inline-block rounded px-4 py-2 mb-2"
+                  : "bg-fuchsia-800 bg-opacity-60 inline-block rounded px-4 py-2 mb-2"
               }
             >
               <p className="text-white">{message.text}</p>
