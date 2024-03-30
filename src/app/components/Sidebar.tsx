@@ -27,37 +27,32 @@ const Sidebar = () => {
   const [rooms, setRooms] = useState<Room[]>([]);
 
   useEffect(() => {
-
-    if(user){
-
-
-    const fetchRooms = async () => {
-
-      const roomCollectionRef = collection(db, "rooms");
-      const q = query(
-        roomCollectionRef, 
-        where ("userId", "==", userId),
-        orderBy("createdAt")
+    if (user) {
+      const fetchRooms = async () => {
+        const roomCollectionRef = collection(db, "rooms");
+        const q = query(
+          roomCollectionRef,
+          where("userId", "==", userId),
+          orderBy("createdAt")
         );
-      const unsubscribe = onSnapshot(q, (snapshot) => {
-        const newRooms: Room[] = snapshot.docs.map((doc) => ({
-          id: doc.id,
-          name: doc.data().name,
-          createdAt: doc.data().createdAt,
-        }));
-        setRooms(newRooms);
-      });
-    };
-    fetchRooms();
-  }
-
-  },[userId, user]);
+        const unsubscribe = onSnapshot(q, (snapshot) => {
+          const newRooms: Room[] = snapshot.docs.map((doc) => ({
+            id: doc.id,
+            name: doc.data().name,
+            createdAt: doc.data().createdAt,
+          }));
+          setRooms(newRooms);
+        });
+      };
+      fetchRooms();
+    }
+  }, [userId, user]);
 
   const selectRoom = (roomId: string, roomName: string) => {
     setSelectedRoom(roomId);
     setSelectRoomName(roomName);
   };
-   
+
   const addNewRoom = async () => {
     const roomName = prompt("ルーム名を入力してください。");
     if (roomName) {
@@ -74,18 +69,18 @@ const Sidebar = () => {
     auth.signOut();
   };
 
-
-    return (
-    <div className="bg-fuchsia-800 bg-opacity-80 h-full overflow-y-auto px-5 flex flex-col">
+  return (
+    <div className="bg-fuchsia-800 bg-opacity-80 h-full overflow-y-auto px-5 pt-20 flex flex-col">
       <div className="flex-grow">
-        <div 
-            onClick={addNewRoom}
-            className="cursor-pointer flex justify-evenly items-center border mt-2 rounded-md hover:bg-fuchsia-900 duration-150">
-            <span className="text-white p-4 text-2xl">＋</span>
-            <h1 className="text-white text-xl font-semibold p-4">New Chat</h1>
+        <div
+          onClick={addNewRoom}
+          className="cursor-pointer flex justify-evenly items-center border mt-2 rounded-md hover:bg-fuchsia-900 duration-150"
+        >
+          <span className="text-white p-4 text-2xl">＋</span>
+          <h1 className="text-white text-xl font-semibold p-4">New Chat</h1>
         </div>
         <ul>
-        {rooms.map((room) => (
+          {rooms.map((room) => (
             <li
               key={room.id}
               className="cursor-pointer border-b p-4 text-slate-100 hover:bg-fuchsia-900 duration-150 "
@@ -103,18 +98,15 @@ const Sidebar = () => {
         </div>
       )}
 
-
-      <div onClick={handleLogout} 
-        className="text-lg flex items-center justify-evenly mb-2 cursor-pointer p-4 text-slate-100 hover:bg-fuchsia-900 duration-150">
+      <div
+        onClick={handleLogout}
+        className="text-lg flex items-center justify-evenly mb-2 cursor-pointer p-4 text-slate-100 hover:bg-fuchsia-900 duration-150"
+      >
         <BiLogOut />
-        <span>
-          ログアウト
-        </span>
+        <span>ログアウト</span>
       </div>
-
-
     </div>
-    );
+  );
 };
 
 export default Sidebar;

@@ -8,7 +8,10 @@ import React from "react";
 import { useForm, SubmitHandler } from "react-hook-form";
 import { auth } from "../../../../firebase";
 import { useRouter } from "next/navigation";
+import { useState } from "react";
 import Link from "next/link";
+import dummy from "./assets/images/proimg.png";
+import Image from "next/image";
 
 type Inputs = {
   email: string;
@@ -40,6 +43,15 @@ const Login = () => {
 
   return (
     <div className="h-screen flex flex-col items-center justify-center">
+      <div className="mb-4">
+        <Image
+          src="/image/L002.png"
+          alt="G001 Image"
+          width={320}
+          height={200}
+          style={{ objectFit: "cover" }}
+        />
+      </div>
       <form
         onSubmit={handleSubmit(onSubmit)}
         className="bg-white p-8 rounded-lg shadow-md w-96"

@@ -6,6 +6,7 @@ import { useForm, SubmitHandler } from "react-hook-form";
 import { useRouter } from "next/navigation";
 import Link from "next/link";
 import { auth } from "../../../../firebase";
+import Image from "next/image";
 
 type Inputs = {
   email: string;
@@ -35,7 +36,6 @@ const Register = () => {
   };
   */
 
-  
   const onSubmit: SubmitHandler<Inputs> = async (data) => {
     await createUserWithEmailAndPassword(auth, data.email, data.password)
       .then((userCrendential) => {
@@ -53,10 +53,18 @@ const Register = () => {
       });
   };
 
-
-
   return (
     <div className="h-screen flex flex-col items-center justify-center">
+      <div className="mb-4">
+        <Image
+          src="/image/L002.png"
+          alt="G001 Image"
+          width={320}
+          height={200}
+          style={{ objectFit: "cover" }}
+        />
+      </div>
+
       <form
         onSubmit={handleSubmit(onSubmit)}
         className="bg-white p-8 rounded-lg shadow-md w-96"

@@ -1,8 +1,7 @@
 import { AppProvider } from "@/context/AppContext";
-import "./globals.css";
+import "../globals.css";
 import type { Metadata } from "next";
 import { Inter } from "next/font/google";
-import Header from "./components/Header";
 
 export const metadata: Metadata = {
   title: "ChatApplication-with-ChatGPT",
@@ -17,10 +16,7 @@ export default function RootLayout({
   return (
     <html lang="ja">
       <body>
-        <div className="flex flex-col h-screen items-center justify-center">
-          <Header />
-          <AppProvider>{children}</AppProvider>
-        </div>
+        <AppProvider>{children}</AppProvider>
       </body>
     </html>
   );

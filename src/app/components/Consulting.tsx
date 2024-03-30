@@ -31,7 +31,20 @@ const Chat = () => {
   });
 
   const { selectedRoom, selectRoomName } = useAppContext();
-  const [inputMessage, setInputMessage] = useState<string>("");
+  const [inputMessage, setInputMessage] =
+    useState<string>("あなたはプロの会計士です");
+  const [professional, setProfessional] = useState<string>("会計士");
+
+  const handleProfessionChange = (
+    event: React.ChangeEvent<HTMLSelectElement>
+  ) => {
+    const selectedProfessional = event.target.value;
+    setProfessional(selectedProfessional);
+
+    // 選択された職業に基づいてinputMessageを更新
+    setInputMessage(`あなたはプロの${selectedProfessional}です`);
+  };
+
   const [messages, setMessages] = useState<Message[]>([]);
   const [isLoading, setIsLoading] = useState<boolean>(false);
 
@@ -129,11 +142,27 @@ const Chat = () => {
         {isLoading && <LoadingIcons.SpinningCircles />}
       </div>
 
+      <div className="mb-4">
+        <label htmlFor="profession-select" className="text-xl text-gray-700">
+          職業を選択：
+        </label>
+        <select
+          id="profession-select"
+          value={professional}
+          onChange={handleProfessionChange}
+          className="text-xl px-4 py-1.5 bg-fuchsia-800 text-white rounded"
+        >
+          <option value="会計士">会計士</option>
+          <option value="起業家">起業家</option>
+          <option value="弁護士">弁護士</option>
+        </select>
+      </div>
+
       <div className="flex-shrink-0 relative">
         <input
           type="text"
           placeholder="Send a Message"
-          className="border-2 rounded w-full pr-10 focus:outline-none p-2"
+          className="text-lg border-2 rounded w-full pr-10 focus:outline-none p-3"
           onChange={(e) => setInputMessage(e.target.value)}
           value={inputMessage}
           /*

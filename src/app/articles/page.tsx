@@ -1,11 +1,12 @@
 "use client";
 
-import Header from "./components/Header";
-import ArticleList from "./components/ArticleList";
-import SimpleSidebar from "./components/SimpleSidebar";
-import Image from "next/image";
+import React from "react";
+import ArticleList from "../components/ArticleList";
+import Sidebar from "../components/Sidebar";
+import Header from "../components/Header";
+import SimpleSidebar from "../components/SimpleSidebar";
 
-export default function Home() {
+export default function Articles() {
   return (
     <div className="flex flex-col h-screen items-center justify-center">
       <div className="flex flex-1 w-full" style={{ width: "1280px" }}>
@@ -18,4 +19,3 @@ export default function Home() {
     </div>
   );
 }
-
